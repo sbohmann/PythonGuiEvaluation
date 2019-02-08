@@ -27,4 +27,4 @@ class Map:
             return self.fields[y * self.width + x].accessible
 
     def create_initial_state(self):
-        return State(self._initial_player_position, self._initial_crate_positions)
+        return State(self, self._initial_player_position, self._initial_crate_positions)

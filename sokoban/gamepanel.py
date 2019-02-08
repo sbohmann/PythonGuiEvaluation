@@ -1,4 +1,5 @@
 import math
+import random
 
 from kivy.uix.widget import Widget
 from kivy.graphics import Color
@@ -32,14 +33,15 @@ class GamePanel(Widget):
     def paint(self):
         self._setup_canvas()
 
-        self._paint_grid()
+        # self._paint_grid()
         self._calculate_map_offset()
         self._paint_map()
         self._paint_state()
 
     def _setup_canvas(self):
         self.canvas.clear()
-        self.canvas.add(Translate(0, self.height))
+        self.canvas.add(Translate(0 + random.randint(-3, 3), self.height + random.randint(-3, 3)))
+        # self.canvas.add(Translate(0, self.height))
         self.canvas.add(Scale(1, -1, -1))
 
     def _paint_grid(self):
@@ -80,10 +82,10 @@ class GamePanel(Widget):
             size=(_field_size, _field_size)))
 
     def _paint_state(self):
-        self.paint_player()
+        self._paint_player()
         self._paint_crates()
 
-    def paint_player(self):
+    def _paint_player(self):
         x, y = self._state.player_position
         self._paint_state_rectangle(x, y, _player_color)
 
