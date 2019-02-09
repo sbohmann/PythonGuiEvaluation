@@ -6,6 +6,11 @@ class MainPanel:
         self._create_view(map)
         self._init_view()
 
+    def set_game_panel(self, _game_panel):
+        self.view.remove_widget(self._game_panel)
+        self._game_panel = _game_panel
+        self.view.add_widget(self._game_panel)
+
     def _create_view(self, game_panel):
         self.view = GridLayout()
         self._game_panel = game_panel

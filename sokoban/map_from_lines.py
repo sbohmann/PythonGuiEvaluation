@@ -28,9 +28,18 @@ class MapFromLines:
         started = False
         for key, x in zip(line, itertools.count()):
             if started or key != ' ':
-                self._keys[offset + x] = key
+                filtered_key = self._filter_key(key, y)
+                self._keys[offset + x] = filtered_key
                 started = True
             self._process_key(x, y, key)
+
+    def _filter_key(self, key, y):
+        return None if self._first_or_last_line(y) and key == ' ' else key
+
+    def _first_or_last_line(self, y):
+        first_line = (y == 0)
+        last_line = (y == len(self._lines) - 1)
+        return first_line or last_line
 
     def _process_key(self, x, y, key):
         if key == '@' or key == '+':
