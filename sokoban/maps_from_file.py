@@ -49,7 +49,7 @@ class MapsFromFile:
         return match.group(1)
 
 
-map_line_pattern = re.compile(' *#(?:[# .$*@+]*#)?')
+map_line_pattern = re.compile('[# .$*@+]+')
 end_line_pattern = re.compile('; (.*)')
 
 
