@@ -16,14 +16,6 @@ class Sokoban(App):
         self._game_panel = GamePanel(self._map, self._state)
         self._mainPanel = MainPanel(self._game_panel)
         self.setup_keyboard_handling()
-        self._start_timer()
-
-    def _start_timer(self):
-        Timer(0.1, lambda: self._handle_timer()).start()
-
-    def _handle_timer(self):
-        self._game_panel.paint()
-        self._start_timer()
 
     def setup_keyboard_handling(self):
         self._keyboard = Window.request_keyboard(self._keyboard_closed, self._game_panel)
@@ -37,6 +29,9 @@ class Sokoban(App):
         direction = _direction_for_keycode.get(keycode[1], None)
         if direction is not None:
             self._move(direction)
+        if keycode[1] == 'escape':
+            self._state = self._map.create_initial_state()
+            self._game_panel.set_state(self._state)
         return True
 
     def build(self):

@@ -40,8 +40,7 @@ class GamePanel(Widget):
 
     def _setup_canvas(self):
         self.canvas.clear()
-        self.canvas.add(Translate(0 + random.randint(-3, 3), self.height + random.randint(-3, 3)))
-        # self.canvas.add(Translate(0, self.height))
+        self.canvas.add(Translate(0, self.height))
         self.canvas.add(Scale(1, -1, -1))
 
     def _paint_grid(self):
