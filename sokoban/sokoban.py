@@ -12,8 +12,8 @@ class Sokoban(App):
     def __init__(self):
         super().__init__()
         self._read_maps()
-        self._setup_state()
         self._setup_ui()
+        self._set_map_index(0)
 
     def build(self):
         return self._mainPanel.view
@@ -23,17 +23,13 @@ class Sokoban(App):
 
     def _read_maps(self):
         self._maps = MapsFromFile('100Boxes.txt').result
-        self._map_index = 0
-        self._map = self._maps[self._map_index]
-        self._set_window_title()
 
     def _setup_ui(self):
-        self._game_panel = GamePanel(self._map, self._state)
-        self._mainPanel = MainPanel(self._game_panel)
+        self._mainPanel = MainPanel()
         self.setup_keyboard_handling()
 
     def setup_keyboard_handling(self):
-        self._keyboard = Window.request_keyboard(self._keyboard_closed, self._game_panel)
+        self._keyboard = Window.request_keyboard(self._keyboard_closed, self._mainPanel)
         self._keyboard.bind(on_key_down=self._on_keyboard_down)
 
     def _keyboard_closed(self):
@@ -63,9 +59,13 @@ class Sokoban(App):
             self._game_panel.paint()
 
     def _switch_map(self, delta):
-        self._map_index = (self._map_index + delta) % len(self._maps)
-        if self._map_index < 0:
-            self._map_index += len(self._maps)
+        new_map_index = (self._map_index + delta) % len(self._maps)
+        if new_map_index < 0:
+            new_map_index += len(self._maps)
+        self._set_map_index(new_map_index)
+
+    def _set_map_index(self, value):
+        self._map_index = value
         self._map = self._maps[self._map_index]
         self._state = self._map.create_initial_state()
         self._game_panel = GamePanel(self._map, self._state)

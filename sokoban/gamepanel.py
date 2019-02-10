@@ -6,18 +6,6 @@ from kivy.graphics import Color
 from kivy.graphics import Rectangle
 from kivy.graphics.context_instructions import Translate, Scale
 
-_grid_size = 10
-_field_size = 50
-
-_colors = {
-    'wall': lambda: Color(0.3, 0.3, 0.3, 1),
-    'floor': lambda: Color(0.7, 0.7, 0.7, 1),
-    'target': lambda: Color(0.9, 0.6, 0.6, 1)
-}
-
-_player_color = lambda: Color(0.5, 0.5, 0.9, 0.5)
-_crate_color = lambda: Color(0.3, 0.2, 0.1, 0.5)
-
 
 class GamePanel(Widget):
     def __init__(self, map, state):
@@ -107,3 +95,16 @@ class GamePanel(Widget):
         return (
             dx + x * _field_size,
             dy + y * _field_size)
+
+
+_grid_size = 10
+_field_size = 50
+
+_colors = {
+    'wall': lambda: Color(0.3, 0.3, 0.3, 1),
+    'floor': lambda: Color(0.7, 0.7, 0.7, 1),
+    'target': lambda: Color(0.9, 0.6, 0.6, 1)
+}
+
+_player_color = lambda: Color(0.5, 0.5, 0.9, 0.5)
+_crate_color = lambda: Color(0.3, 0.2, 0.1, 0.5)
