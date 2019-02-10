@@ -1,5 +1,3 @@
-import {position} from './state.js'
-import {MainPanel} from './mainpanel.js'
 import {GamePanel} from './gamepanel.js'
 import {MapsFromFile} from './maps_from_file.js'
 

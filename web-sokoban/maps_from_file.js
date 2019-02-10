@@ -1,6 +1,6 @@
 import {MapFromLines} from './map_from_lines.js'
 
-class MapsFromFile {
+export class MapsFromFile {
     constructor(path) {
         this.result = []
         this._current_map_lines = null

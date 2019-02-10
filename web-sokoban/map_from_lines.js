@@ -1,8 +1,8 @@
 import {Map} from './map.js'
 import {Field} from './field.js'
-import {Position} from './state.js'
+import {position} from './state.js'
 
-class MapFromLines {
+export class MapFromLines {
     constructor(name, lines) {
         this._name = name
         this._lines = lines
@@ -22,7 +22,8 @@ class MapFromLines {
         this._width = max(map(len, this._lines))
         this._height = len(this._lines)
         this._keys = [null] * this._width * this._height
-        for (line, offset in zip(this._lines, range(0, this._height)) {
+        for (let offset = 0; offset < his._height; ++offset) {
+            let line = this._lines[offset]
             this._parse_line(line, offset)
         }
     }
@@ -30,13 +31,15 @@ class MapFromLines {
     _parse_line(line, y) {
         let offset = y * this._width
         let started = false
-        for (key, x in zip(line, itertools.count())) {
+        let x = 0
+        for (let key of line) {
             if (started || key !== ' ') {
                 let filtered_key = this._filter_key(key, y)
                 this._keys[offset + x] = filtered_key
                 started = true
             }
             this._process_key(x, y, key)
+            ++x
         }
     }
 

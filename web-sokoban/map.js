@@ -1,6 +1,6 @@
 import {State} from './state.js'
 
-class Map {
+export class Map {
     constructor(name, width, height, fields, player_position, crate_positions) {
         this._check_size(width, height, fields)
         this.name = name

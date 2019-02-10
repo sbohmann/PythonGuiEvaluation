@@ -1,11 +1,11 @@
-class Field {
+export class Field {
     constructor(key) {
         this.visible = (key !== null)
         if (key === null) {
             this.accessible = false
             this.target = false
             this.image = null
-        } else if if (key === '#') {
+        } else if (key === '#') {
             this.accessible = false
             this.target = false
             this.image = 'wall'

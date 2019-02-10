@@ -1,4 +1,4 @@
-class State {
+export class State {
     __init__(map, player_position, crate_positions) {
         this._map = map
         this._player_position = player_position
@@ -67,6 +67,6 @@ class State {
     }
 }
 
-function position(x, y) {
+export function position(x, y) {
     return {x: x, y: y}
 }

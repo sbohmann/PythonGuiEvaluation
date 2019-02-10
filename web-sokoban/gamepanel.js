@@ -1,7 +1,7 @@
 const _grid_size = 10
 const _field_size = 50
 
-class GamePanel {
+export class GamePanel {
     constructor(map, state) {
         this.canvas = document.getElementById('game_panel')
         this._map = map
